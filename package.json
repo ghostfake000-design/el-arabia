@@ -46,6 +46,7 @@
     "win": {
       "target": "nsis",
       "icon": "icon.ico",
+      "certificateFile": "elnoamany_new.pfx",
       "publisherName": "elnoamany",
       "requestedExecutionLevel": "requireAdministrator"
     },

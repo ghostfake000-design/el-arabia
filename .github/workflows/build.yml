@@ -22,10 +22,12 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
+        # استخدمنا install بدل ci عشان يتخطى مشاكل الـ lock file اللي حصلت قبل كدة
         run: npm install
 
       - name: Build (electron-builder)
         env:
+          # السيرفر هياخد الشهادة الجديدة من الـ Secrets بتاعتك
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -36,8 +38,9 @@ jobs:
         with:
           tag: v1.0.${{ github.run_number }}
           name: "Release v1.0.${{ github.run_number }}"
-          body: "نظام العربية للمخازن - نسخة احترافية موثقة"
+          body: "نظام العربية للمخازن - نسخة احترافية موثقة برقم إصدار ${{ github.run_number }}"
           draft: false
           prerelease: false
+          # الملفات هتطلع في الفولدر ده بناءً على إعدادات package.json
           artifacts: "dist-electron/*.exe" 
           token: ${{ secrets.GH_TOKEN }}
