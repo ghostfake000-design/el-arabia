@@ -1,0 +1,1 @@
+See original assets/icon-source.png in upstream repository.

@@ -1,0 +1,47 @@
+{
+  "name": "el-arabia",
+  "version": "4.0.0",
+  "description": "العربية للمخازن - cleaned app root",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite",
+    "start": "electron .",
+    "build": "vite build && electron-builder --win",
+    "build:win": "vite build && electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "electron-store": "^8.1.0",
+    "xlsx": "0.18.5"
+  },
+  "build": {
+    "appId": "com.elnoamany.al-arabia.inventory",
+    "productName": "elnoamany_ - العربية للمخازن Pro",
+    "companyName": "النعماني",
+    "directories": { "output": "dist-electron" },
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "index.html",
+      "assets/**",
+      "src/**"
+    ],
+    "extraResources": [
+      { "from": "data/", "to": "data", "filter": ["**/*"] }
+    ],
+    "win": {
+      "publisherName": "elnoamany",
+      "target": "nsis",
+      "requestedExecutionLevel": "requireAdministrator"
+    }
+  }
+}

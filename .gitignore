@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-electron/
+*.exe
+*.msi
+*.zip
+/*.log
+/*.pdb
+credentials.json
+scripts/certs/
