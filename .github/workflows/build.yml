@@ -20,16 +20,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm' # بيسرع البلد المرات الجاية
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build (electron-builder)
         env:
+          # التأكد من تمرير الأسرار للسيرفر
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }} # مهم جداً يكون هنا كمان
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run build
 
       - name: Create Release
@@ -40,13 +41,13 @@ jobs:
           body: "Automated build with digital signature"
           draft: false
           prerelease: false
-          # السطر اللي جاي ده هو اللي بيرفع الـ EXE للناس:
-          artifacts: "dist/*.exe,dist/*.msi" 
+          # تعديل المسار لـ dist-electron بناءً على إعداداتك في package.json
+          artifacts: "dist-electron/*.exe" 
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Artifacts (Internal)
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: windows-build
-          path: dist/*.exe
+          name: windows-installer
+          path: dist-electron/*.exe
