@@ -34,6 +34,8 @@
       "dist/**/*",
       "main.js",
       "index.html",
+      "license.html",
+      "license-manager.js",
       "electron-api.js",
       "icon.ico"
     ],
