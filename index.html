@@ -86,7 +86,7 @@
       }
     }
     </script>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./src/index.css">
   </head>
   <body class="dark">
     <div id="loading-screen">
@@ -95,10 +95,9 @@
     </div>
     <div id="root"></div>
 
-    <script type="module" src="./index.tsx"></script>
+    <script type="module" src="./src/index.tsx"></script>
 
     <script>
-      // Capture runtime errors
       function showErrorOnLoader(msg) {
         try {
           const loader = document.getElementById('loading-screen');
@@ -117,7 +116,7 @@
 
       window.addEventListener('unhandledrejection', function (ev) {
         const m = ev && ev.reason && ev.reason.stack ? ev.reason.stack : String(ev.reason || ev);
-        showErrorOnLoader('Unhandled Promise Rejection:\\n' + m);
+        showErrorOnLoader('Unhandled Promise Rejection:\n' + m);
       });
     </script>
     <script>
