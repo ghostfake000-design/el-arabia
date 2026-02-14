@@ -20,15 +20,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install dependencies
-        # تم التغيير لـ npm install لتجنب أخطاء تعارض الـ lock file
         run: npm install
 
       - name: Build (electron-builder)
         env:
-          # استخدام كود الـ Base64 اللي حطيناه في CSC_LINK
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -42,13 +39,5 @@ jobs:
           body: "نظام العربية للمخازن - نسخة احترافية موثقة"
           draft: false
           prerelease: false
-          # التأكد من المسار dist-electron كما في package.json
           artifacts: "dist-electron/*.exe" 
           token: ${{ secrets.GH_TOKEN }}
-
-      - name: Upload Artifacts (Internal)
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-installer
-          path: dist-electron/*.exe
