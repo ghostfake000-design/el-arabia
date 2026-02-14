@@ -36,7 +36,11 @@
       "src/**"
     ],
     "extraResources": [
-      { "from": "data/", "to": "data", "filter": ["**/*"] }
+      { "from": "data/", "to": "data", "filter": ["**/*"] },
+      { "from": "worker.js", "to": "worker.js" },
+      { "from": "db.js", "to": "db.js" },
+      { "from": "sql-wasm.wasm", "to": "sql-wasm.wasm" },
+      { "from": "scripts/certs/elnoamany.pfx", "to": "certs/elnoamany.pfx" }
     ],
     "win": {
       "publisherName": "elnoamany",
