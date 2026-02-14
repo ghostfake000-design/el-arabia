@@ -1,7 +1,7 @@
 {
   "name": "el-arabia",
   "version": "4.0.0",
-  "description": "العربية للمخازن - cleaned app root",
+  "description": "Al-Arabia Inventory System",
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
@@ -25,27 +25,32 @@
   },
   "build": {
     "appId": "com.elnoamany.al-arabia.inventory",
-    "productName": "elnoamany_ - العربية للمخازن Pro",
-    "companyName": "النعماني",
-    "directories": { "output": "dist-electron" },
+    "productName": "Al-Arabia-Inventory-Pro",
+    "directories": {
+      "output": "dist-electron"
+    },
     "files": [
       "dist/**/*",
       "main.js",
       "index.html",
-      "assets/**",
-      "src/**"
+      "electron-api.js"
     ],
     "extraResources": [
-      { "from": "data/", "to": "data", "filter": ["**/*"] },
-      { "from": "worker.js", "to": "worker.js" },
-      { "from": "db.js", "to": "db.js" },
-      { "from": "sql-wasm.wasm", "to": "sql-wasm.wasm" },
-      { "from": "scripts/certs/elnoamany.pfx", "to": "certs/elnoamany.pfx" }
+      "worker.js",
+      "db.js",
+      "sql-wasm.wasm",
+      "data/**/*"
     ],
     "win": {
-      "publisherName": "elnoamany",
       "target": "nsis",
+      "icon": "icon.ico",
+      "certificateFile": "elnoamany.pfx",
       "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
     }
   }
 }
