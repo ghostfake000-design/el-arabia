@@ -20,38 +20,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm' # بيسرع البلد المرات الجاية
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Set signing env
-        env:
-          CSC_LINK: ${{ secrets.CSC_LINK }}
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          echo "Signing env set"
 
       - name: Build (electron-builder)
         env:
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }} # مهم جداً يكون هنا كمان
         run: npm run build
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: v${{ github.run_number }}
-          name: "Release ${{ github.run_number }}"
-          body: "Automated build from main"
+          tag: v1.0.${{ github.run_number }}
+          name: "Release v1.0.${{ github.run_number }}"
+          body: "Automated build with digital signature"
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          # السطر اللي جاي ده هو اللي بيرفع الـ EXE للناس:
+          artifacts: "dist/*.exe,dist/*.msi" 
+          token: ${{ secrets.GH_TOKEN }}
 
-      - name: Upload Installer
+      - name: Upload Artifacts (Internal)
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: installer
-          path: dist-electron/**/*
+          name: windows-build
+          path: dist/*.exe
