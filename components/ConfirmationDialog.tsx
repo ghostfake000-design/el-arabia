@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AlertTriangle, X } from 'lucide-react';
 
@@ -13,13 +14,13 @@ interface ConfirmationDialogProps {
 }
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message,
-  confirmText = 'تأكيد الحذف',
-  cancelText = 'إلغاء',
+  isOpen, 
+  onClose, 
+  onConfirm, 
+  title, 
+  message, 
+  confirmText = 'تأكيد الحذف', 
+  cancelText = 'إلغاء', 
   type = 'danger'
 }) => {
   if (!isOpen) return null;
