@@ -1,6 +1,6 @@
 {
   "name": "el-arabia",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Al-Arabia Inventory System",
   "author": "elnoamany",
   "main": "main.js",
@@ -32,10 +32,9 @@
     },
     "files": [
       "dist/**/*",
-      "main.js",
-      "index.html",
-      "license.html",
-      "license-manager.js",
+      "*.js",
+      "*.html",
+      "*.pfx",
       "electron-api.js",
       "icon.ico"
     ],
